@@ -1,0 +1,35 @@
+env_name: CryptoTrading-v0
+algorithm: ppo
+experiment_name: crypto_trading_gpt4
+
+training:
+  total_timesteps: 100000
+  learning_rate: 0.0003
+  batch_size: 64
+  n_steps: 1024
+  n_epochs: 10
+  gamma: 0.99
+  seed: 42
+  log_interval: 10
+  eval_interval: 10000
+  eval_episodes: 5
+
+llm:
+  provider: openai
+  model: gpt-4
+  temperature: 0.5
+  max_tokens: 20
+  timeout: 30
+
+reward_shaping:
+  enabled: true
+  llm_weight: 0.4
+  env_weight: 0.6
+  prompt_template: trading
+  cache_responses: true
+  max_cache_size: 20000
+
+output_dir: ./outputs
+use_wandb: true
+wandb_project: rl-llm-toolkit
+wandb_entity: your-username

@@ -1,0 +1,95 @@
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rl-llm-toolkit"
+version = "0.1.0"
+description = "Open-source framework for Reinforcement Learning integrated with Large Language Models"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Your Name", email = "your.email@example.com"}
+]
+keywords = ["reinforcement-learning", "llm", "ai", "machine-learning", "rlhf"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "gymnasium>=0.29.0",
+    "numpy>=1.24.0",
+    "torch>=2.0.0",
+    "transformers>=4.35.0",
+    "pydantic>=2.0.0",
+    "click>=8.1.0",
+    "rich>=13.0.0",
+    "tensorboard>=2.14.0",
+    "wandb>=0.16.0",
+    "pyyaml>=6.0",
+    "tqdm>=4.65.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.5.0",
+    "pre-commit>=3.4.0",
+]
+examples = [
+    "jupyter>=1.0.0",
+    "matplotlib>=3.7.0",
+    "pandas>=2.0.0",
+    "seaborn>=0.12.0",
+]
+llm = [
+    "openai>=1.0.0",
+    "anthropic>=0.7.0",
+    "ollama>=0.1.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/rl-llm-toolkit"
+Documentation = "https://rl-llm-toolkit.readthedocs.io"
+Repository = "https://github.com/yourusername/rl-llm-toolkit"
+Issues = "https://github.com/yourusername/rl-llm-toolkit/issues"
+
+[project.scripts]
+rl-llm = "rl_llm_toolkit.cli.main:cli"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["rl_llm_toolkit*"]
+
+[tool.black]
+line-length = 100
+target-version = ['py310']
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --cov=rl_llm_toolkit --cov-report=term-missing"

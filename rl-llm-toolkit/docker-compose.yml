@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  rl-llm-toolkit:
+    build: .
+    image: rl-llm-toolkit:latest
+    container_name: rl-llm-toolkit
+    volumes:
+      - ./outputs:/app/outputs
+      - ./logs:/app/logs
+      - ./examples:/app/examples
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: python examples/cartpole_basic.py
+    
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    restart: unless-stopped
+
+volumes:
+  ollama_data:
