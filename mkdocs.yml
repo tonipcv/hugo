@@ -42,6 +42,13 @@ nav:
 
 plugins:
   - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            show_source: true
+            docstring_style: google
+            merge_init_into_class: true
 
 markdown_extensions:
   - admonition
