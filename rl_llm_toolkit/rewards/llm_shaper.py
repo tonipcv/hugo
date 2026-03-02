@@ -100,15 +100,21 @@ class LLMRewardShaper:
         next_state: np.ndarray,
         context: Dict[str, Any],
     ) -> str:
-        prompt_vars = {
+        # Provide default values for common template variables
+        template_vars = {
             "env_reward": env_reward,
-            "prev_state": self._format_state(state),
-            "new_state": self._format_state(next_state),
+            "state": state.tolist(),
             "action": action,
-            **context,
+            "next_state": next_state.tolist(),
+            "prev_state": self._format_state(state),  # For template compatibility
+            "new_state": self._format_state(next_state),  # For template compatibility
+            "env_name": context.get("env_name", "Unknown"),
+            "goal": context.get("goal", "maximize reward"),
+            "progress": context.get("progress", "unknown"),  # For template compatibility
         }
+        template_vars.update(context)
         
-        return self.template.format(**prompt_vars)
+        return self.template.format(**template_vars)
 
     def _format_state(self, state: np.ndarray) -> str:
         if len(state) <= 10:

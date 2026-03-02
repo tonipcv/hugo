@@ -30,14 +30,31 @@ python -m rl_llm_toolkit.examples.cartpole
 
 ## 📦 Installation
 
-```bash
-# From PyPI (coming soon)
-pip install rl-llm-toolkit
+### From PyPI (Coming Soon)
 
-# From source
-git clone https://github.com/yourusername/rl-llm-toolkit.git
-cd rl-llm-toolkit
+```bash
+pip install rl-llm-toolkit
+```
+
+### From Source
+
+```bash
+git clone https://github.com/tonipcv/hugo.git
+cd hugo
 pip install -e .
+```
+
+### Optional Dependencies
+
+```bash
+# For LLM integration
+pip install -e ".[llm]"
+
+# For development
+pip install -e ".[dev]"
+
+# For all features
+pip install -e ".[all]"
 ```
 
 ## 💡 Usage Example

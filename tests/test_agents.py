@@ -107,7 +107,7 @@ class TestDQNAgent:
         
         assert epsilon_0 == 1.0
         assert 0.1 < epsilon_500 < 1.0
-        assert epsilon_1000 == 0.1
+        assert abs(epsilon_1000 - 0.1) < 0.01  # Use tolerance for floating point comparison
         env.close()
     
     def test_predict(self):
