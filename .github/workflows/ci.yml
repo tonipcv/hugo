@@ -45,7 +45,7 @@ jobs:
         file: ./coverage.xml
         flags: unittests
         name: codecov-umbrella
-        fail_ci_if_error: false
+        fail_ci_if_error: true
 
   lint:
     runs-on: ubuntu-latest
@@ -71,7 +71,7 @@ jobs:
     
     - name: Type check with mypy
       run: mypy rl_llm_toolkit --ignore-missing-imports
-      continue-on-error: true
+
 
   build:
     runs-on: ubuntu-latest

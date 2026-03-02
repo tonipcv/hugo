@@ -4,6 +4,7 @@ import yaml
 from rich.console import Console
 from rich.table import Table
 
+from rl_llm_toolkit import __version__
 from rl_llm_toolkit.core.config import Config
 from rl_llm_toolkit.core.environment import RLEnvironment
 from rl_llm_toolkit.agents.ppo import PPOAgent
@@ -12,13 +13,23 @@ from rl_llm_toolkit.llm.ollama import OllamaBackend
 from rl_llm_toolkit.llm.openai import OpenAIBackend
 from rl_llm_toolkit.rewards.llm_shaper import LLMRewardShaper
 from rl_llm_toolkit.utils.logger import Logger
+from rl_llm_toolkit import (
+    SimpleReacherEnv,
+    GridWorldEnv,
+    CryptoTradingEnv,
+    StockTradingEnv,
+)
 
 console = Console()
 
 
 @click.group()
-@click.version_option(version="0.1.0")
+@click.version_option(version=__version__)
 def cli() -> None:
+    """Hugo: RL-LLM Toolkit - Reinforcement Learning with LLM-enhanced rewards.
+
+    A command-line interface for training and evaluating reinforcement learning agents with LLM-enhanced rewards.
+    """
     pass
 
 
@@ -26,7 +37,8 @@ def cli() -> None:
 @click.argument("config_file", type=click.Path(exists=True))
 @click.option("--output-dir", "-o", default="./outputs", help="Output directory")
 @click.option("--device", "-d", default=None, help="Device (cpu/cuda)")
-def train(config_file: str, output_dir: str, device: str) -> None:
+@click.option("--dry-run", is_flag=True, default=False, help="Validate config and exit")
+def train(config_file: str, output_dir: str, device: str, dry_run: bool) -> None:
     console.print("[bold green]Starting training...[/bold green]")
     
     with open(config_file, "r") as f:
@@ -35,6 +47,11 @@ def train(config_file: str, output_dir: str, device: str) -> None:
     config = Config(**config_dict)
     
     env = RLEnvironment(config.env_name)
+
+    if dry_run:
+        console.print("[bold cyan]Dry run:[/bold cyan] configuration validated.")
+        console.print(f"Env: {config.env_name} | Algo: {config.algorithm}")
+        return
     
     reward_shaper = None
     if config.llm and config.reward_shaping and config.reward_shaping.enabled:
@@ -189,7 +206,46 @@ def quickstart(env: str, algorithm: str, llm: bool) -> None:
     
     console.print(f"[bold green]Configuration saved to {config_path}[/bold green]")
     console.print("\nTo start training, run:")
-    console.print(f"[bold cyan]rl-llm train {config_path}[/bold cyan]")
+    console.print(f"[bold cyan]hugo train {config_path}[/bold cyan]")
+
+
+@cli.command(name="list-envs")
+def list_envs() -> None:
+    """List available environments."""
+    table = Table(title="Available Environments")
+    table.add_column("Name", style="cyan")
+    table.add_column("Description", style="magenta")
+    table.add_row("Gymnasium IDs", "Any env id supported by Gymnasium (e.g., CartPole-v1)")
+    table.add_row("CryptoTradingEnv", "Single-asset crypto trading simulator")
+    table.add_row("StockTradingEnv", "Multi-asset stock trading simulator")
+    table.add_row("SimpleReacherEnv", "2-link robotic arm reaching task")
+    table.add_row("GridWorldEnv", "Grid navigation with obstacles and goal")
+    console.print(table)
+
+
+@cli.command(name="list-agents")
+def list_agents() -> None:
+    """List available RL agents."""
+    table = Table(title="Available Agents")
+    table.add_column("Agent", style="cyan")
+    table.add_column("Type", style="magenta")
+    table.add_row("PPOAgent", "On-policy, actor-critic")
+    table.add_row("DQNAgent", "Off-policy, value-based")
+    table.add_row("CQLAgent", "Offline RL, conservative Q-learning")
+    table.add_row("IQLAgent", "Offline RL, implicit Q-learning")
+    table.add_row("MADDPGAgent", "Multi-agent, actor-critic")
+    console.print(table)
+
+
+@cli.command(name="list-backends")
+def list_backends() -> None:
+    """List available LLM backends."""
+    table = Table(title="Available LLM Backends")
+    table.add_column("Backend", style="cyan")
+    table.add_column("Notes", style="magenta")
+    table.add_row("OllamaBackend", "Local models via Ollama (http://localhost:11434)")
+    table.add_row("OpenAIBackend", "OpenAI API models (requires API key)")
+    console.print(table)
 
 
 if __name__ == "__main__":

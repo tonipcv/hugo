@@ -1,0 +1,52 @@
+site_name: Hugo: RL-LLM Toolkit
+site_description: Lean, research-oriented RL toolkit with LLM-enhanced rewards
+site_url: https://tonipcv.github.io/hugo/
+repo_url: https://github.com/tonipcv/hugo
+repo_name: tonipcv/hugo
+
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - content.code.copy
+    - content.action.edit
+    - search.suggest
+    - search.highlight
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+
+nav:
+  - Home: README.md
+  - Getting Started:
+      - Quickstart: README.md#-quick-start
+      - Installation: README.md#-installation
+  - Tutorials:
+      - Advanced Trading: examples/advanced_trading_example.py
+      - Visualization: examples/visualization_example.py
+      - Robotics: examples/robotics_example.py
+      - Hyperparameter Tuning: examples/hyperparameter_tuning_example.py
+  - API Reference:
+      - Overview: docs/api_reference.md
+      - Detailed API: docs/API.md
+  - Publishing: PUBLISH.md
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - pymdownx.details
+  - pymdownx.superfences
+  - toc:
+      permalink: true

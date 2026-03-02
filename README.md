@@ -3,6 +3,9 @@
 **Democratizing Reinforcement Learning with Large Language Models**
 
 [![PyPI](https://img.shields.io/pypi/v/hugo-rl-llm.svg)](https://pypi.org/project/hugo-rl-llm/)
+[![CI](https://github.com/tonipcv/hugo/actions/workflows/ci.yml/badge.svg)](https://github.com/tonipcv/hugo/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/tonipcv/hugo/branch/main/graph/badge.svg)](https://codecov.io/gh/tonipcv/hugo)
+[![Downloads](https://static.pepy.tech/badge/hugo-rl-llm)](https://pepy.tech/project/hugo-rl-llm)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 
@@ -138,9 +141,9 @@ Inspired by projects like PufferLib, Neural MMO, and the broader open-source RL 
 
 ## 📬 Contact
 
-- Twitter/X: [@your_handle](https://twitter.com/your_handle)
-- Discord: [Join our community](https://discord.gg/your_invite)
-- Issues: [GitHub Issues](https://github.com/yourusername/rl-llm-toolkit/issues)
+- Issues: https://github.com/tonipcv/hugo/issues
+- Discussions: https://github.com/tonipcv/hugo/discussions
+- Email: contact@xaseai.com
 
 ---
 

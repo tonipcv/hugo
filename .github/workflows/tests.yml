@@ -49,7 +49,7 @@ jobs:
         file: ./coverage.xml
         flags: unittests
         name: codecov-umbrella
-        fail_ci_if_error: false
+        fail_ci_if_error: true
 
   lint:
     runs-on: ubuntu-latest
@@ -78,7 +78,7 @@ jobs:
     - name: Type check with mypy
       run: |
         mypy rl_llm_toolkit/ --ignore-missing-imports
-      continue-on-error: true
+      
 
   examples:
     runs-on: ubuntu-latest
@@ -96,10 +96,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install -e .
     
-    - name: Test offline RL example
+    - name: Smoke test imports
       run: |
-        timeout 120 python examples/offline_rl_example.py || true
-    
-    - name: Test benchmark example
+        python -c "import rl_llm_toolkit as m; print(m.__version__)"
+
+    - name: Test visualization example
       run: |
-        timeout 120 python examples/benchmark_example.py || true
+        timeout 120 python examples/visualization_example.py
