@@ -5,13 +5,13 @@ Get started with RL-LLM Toolkit in minutes!
 ## Installation
 
 ```bash
-pip install rl-llm-toolkit
+pip install hugo-rl-llm
 ```
 
 For development installation:
 ```bash
-git clone https://github.com/yourusername/rl-llm-toolkit.git
-cd rl-llm-toolkit
+git clone https://github.com/tonipcv/hugo.git
+cd hugo
 pip install -e ".[dev,examples,llm]"
 ```
 
@@ -86,7 +86,7 @@ print(f"Total Tokens: {stats['llm_stats']['total_tokens']}")
 ### Generate Configuration
 
 ```bash
-rl-llm quickstart --env CartPole-v1 --algorithm ppo --llm
+hugo quickstart --env CartPole-v1 --algorithm ppo --llm
 ```
 
 This creates `config_quickstart.yaml`:
@@ -108,13 +108,13 @@ reward_shaping:
 ### Train from Config
 
 ```bash
-rl-llm train config_quickstart.yaml --output-dir ./outputs
+hugo train config_quickstart.yaml --output-dir ./outputs
 ```
 
 ### Evaluate Model
 
 ```bash
-rl-llm evaluate ./outputs/model.pt CartPole-v1 --episodes 10 --render
+hugo evaluate ./outputs/model.pt CartPole-v1 --episodes 10 --render
 ```
 
 ## DQN Example

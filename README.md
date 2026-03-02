@@ -87,19 +87,50 @@ agent.evaluate(episodes=10, render=True)
 
 ## 🏗️ Architecture
 
+```mermaid
+flowchart LR
+  subgraph Agents
+    A1[PPOAgent]:::node
+    A2[DQNAgent]:::node
+    A3[CQL/IQL]:::node
+    A4[MADDPG]:::node
+  end
+  subgraph Environments
+    E1[Gymnasium IDs]
+    E2[CryptoTradingEnv]
+    E3[StockTradingEnv]
+    E4[SimpleReacherEnv]
+    E5[GridWorldEnv]
+  end
+  subgraph RewardShaping
+    R1[LLMRewardShaper]
+    R2[Prompt Templates]
+    R3[Cache]
+  end
+  subgraph LLMBackends
+    L1[Ollama]
+    L2[OpenAI]
+  end
+  Agents <--> Environments
+  Agents --> R1
+  R1 --> LLMBackends
+  R1 -->|combine with env_reward| Agents
+  classDef node fill:#eef,stroke:#66f,stroke-width:1px;
 ```
-rl-llm-toolkit/
-├── rl_llm_toolkit/          # Core package
-│   ├── agents/              # RL algorithms (PPO, DQN, etc.)
-│   ├── environments/        # Custom environments
-│   ├── llm/                 # LLM integrations
-│   ├── rewards/             # Reward shaping utilities
-│   ├── utils/               # Helper functions
-│   └── cli/                 # Command-line tools
-├── examples/                # Example scripts and notebooks
-├── tests/                   # Test suite
-└── docs/                    # Documentation
-```
+
+## ❓ Why Hugo?
+
+- **LLM Rewards Nativos**: integração direta com Ollama e OpenAI, com templates prontos e cache.
+- **Lean & Research-Oriented**: sem bloat; arquitetura clara, fácil de estender.
+- **Domínios Diversos**: trading (cripto/ações), robótica (reacher) e gridworld prontos.
+- **Benchmarks & Métricas**: estabilidade, eficiência amostral e performance assintótica.
+- **Colaboração**: sessões e buffers compartilhados para cenários multiagente/experimentos.
+- **CLI Produtiva**: descoberta (`list-*`), quickstart e validação (`--dry-run`).
+
+Comparativo rápido:
+- Stable-Baselines3: produção madura, porém sem LLM shaping nativo.
+- TorchRL: poderoso e amplo; Hugo é mais direto para RL + LLM.
+- OpenRLHF / RL4LMs: foco em LLMs; Hugo cobre RL clássico + LLM em vários domínios.
 
 ## 🎓 Examples
 
@@ -148,3 +179,5 @@ Inspired by projects like PufferLib, Neural MMO, and the broader open-source RL 
 ---
 
 **Star ⭐ this repo if you find it useful!**
+
+Star History: https://star-history.com/#tonipcv/hugo

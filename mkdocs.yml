@@ -28,7 +28,7 @@ theme:
 nav:
   - Home: README.md
   - Getting Started:
-      - Quickstart: README.md#-quick-start
+      - Quickstart: docs/quickstart.md
       - Installation: README.md#-installation
   - Tutorials:
       - Advanced Trading: examples/advanced_trading_example.py
