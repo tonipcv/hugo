@@ -12,7 +12,16 @@ from rl_llm_toolkit.integrations import HuggingFaceHub
 from rl_llm_toolkit.integrations.leaderboard import Leaderboard
 from rl_llm_toolkit.benchmarks import BenchmarkSuite, PerformanceMetrics
 from rl_llm_toolkit.collaboration import CollaborationSession, SharedReplayBuffer
-from rl_llm_toolkit.vision import VideoReasoningBackend, VisualRewardShaper
+from rl_llm_toolkit.vision import (
+    VideoReasoningBackend,
+    VisualRewardShaper,
+)
+from rl_llm_toolkit.environments.robotics import (
+    SimpleReacherEnv,
+    GridWorldEnv,
+)
+from rl_llm_toolkit.environments.trading import CryptoTradingEnv
+from rl_llm_toolkit.environments.stock_trading import StockTradingEnv
 
 __version__ = "0.2.0"
 __all__ = [
@@ -35,4 +44,8 @@ __all__ = [
     "SharedReplayBuffer",
     "VideoReasoningBackend",
     "VisualRewardShaper",
+    "SimpleReacherEnv",
+    "GridWorldEnv",
+    "CryptoTradingEnv",
+    "StockTradingEnv",
 ]
