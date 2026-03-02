@@ -1,7 +1,8 @@
-# RL-LLM Toolkit
+# Hugo: RL-LLM Toolkit
 
 **Democratizing Reinforcement Learning with Large Language Models**
 
+[![PyPI](https://img.shields.io/pypi/v/hugo-rl-llm.svg)](https://pypi.org/project/hugo-rl-llm/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 
@@ -21,19 +22,22 @@ RL-LLM Toolkit is an open-source framework that integrates Reinforcement Learnin
 ## 🎯 Quick Start
 
 ```bash
-# Install the toolkit
-pip install rl-llm-toolkit
+# Install the toolkit from PyPI
+pip install hugo-rl-llm
 
-# Run a simple example
+# Run the CLI
+hugo --help
+
+# Or run a simple example module
 python -m rl_llm_toolkit.examples.cartpole
 ```
 
 ## 📦 Installation
 
-### From PyPI (Coming Soon)
+### From PyPI
 
 ```bash
-pip install rl-llm-toolkit
+pip install hugo-rl-llm
 ```
 
 ### From Source
